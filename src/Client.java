@@ -64,7 +64,7 @@ public class Client {
 
         if(bufferedReader != null){
             bufferedReader.close();
-        }
+          }
 
         if(bufferedWriter != null){
             bufferedWriter.close();
