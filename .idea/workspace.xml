@@ -4,17 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="066ecba8-0e82-4957-940f-587ed894579c" name="Changes" comment="implementing GUI">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/JAVAFXX.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/GPT.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/GUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/JavaChatClient.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+    <list default="true" id="066ecba8-0e82-4957-940f-587ed894579c" name="Changes" comment="gui 0.1&#10;implemented chatGPT prompting">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ChatClientGUI/ChatClientGUI.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/JavaChatClient.iml" beforeDir="false" afterPath="$PROJECT_DIR$/JavaChatClient.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ClientHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ClientHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GPT.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GPT.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,6 +58,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.ChatGUI.executor": "Run",
     "Application.Client.executor": "Run",
     "Application.GUI.executor": "Run",
     "Application.Server.executor": "Run",
@@ -70,9 +68,10 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
     "jdk.selected.JAVA_MODULE": "20",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/gumim/Downloads/IdeaJ/javafx-sdk-21.0.1/lib",
+    "last_opened_file_path": "C:/Users/gumim/Downloads/Multi-Client-Chat-App-master/Multi-Client-Chat-App-master",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -92,6 +91,14 @@
     </key>
   </component>
   <component name="RunManager" selected="Application.GUI">
+    <configuration name="ChatGUI" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ChatGUI" />
+      <module name="JavaChatClient" />
+      <option name="VM_PARAMETERS" value="--module-path &quot;C:\Users\gumim\Downloads\IdeaJ\javafx-sdk-21.0.1\lib&quot; --add-modules javafx.controls,javafx.fxml" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Client" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="20" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -119,33 +126,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="gptTEST" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="gptTEST" />
-      <module name="JavaChatClient" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="teeest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="teeest" />
-      <module name="JavaChatClient" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <list>
       <item itemvalue="Application.GUI" />
-      <item itemvalue="Application.gptTEST" />
-      <item itemvalue="Application.teeest" />
+      <item itemvalue="Application.ChatGUI" />
       <item itemvalue="Application.Client" />
       <item itemvalue="Application.Server" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.gptTEST" />
-        <item itemvalue="Application.teeest" />
         <item itemvalue="Application.Client" />
         <item itemvalue="Application.Server" />
+        <item itemvalue="Application.ChatGUI" />
       </list>
     </recent_temporary>
   </component>
@@ -166,7 +157,9 @@
       <workItem from="1705253808342" duration="1393000" />
       <workItem from="1705315491034" duration="10648000" />
       <workItem from="1705389461050" duration="2382000" />
-      <workItem from="1705393293236" duration="6407000" />
+      <workItem from="1705393293236" duration="9004000" />
+      <workItem from="1705409557405" duration="5901000" />
+      <workItem from="1705503345974" duration="1040000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -248,7 +241,15 @@
       <option name="project" value="LOCAL" />
       <updated>1705254592570</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="gui 0.1&#10;implemented chatGPT prompting">
+      <option name="closed" value="true" />
+      <created>1705402323538</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1705402323538</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -259,7 +260,18 @@
     <MESSAGE value="implementing gui" />
     <MESSAGE value="text edit" />
     <MESSAGE value="implementing GUI" />
-    <option name="LAST_COMMIT_MESSAGE" value="implementing GUI" />
+    <MESSAGE value="gui 0.1&#10;implemented chatGPT prompting" />
+    <option name="LAST_COMMIT_MESSAGE" value="gui 0.1&#10;implemented chatGPT prompting" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.net.ConnectException" package="java.net" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/JavaChatClient$GUI.ic" NAME="GUI Coverage Results" MODIFIED="1705393472362" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
