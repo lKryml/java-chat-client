@@ -1,30 +1,29 @@
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.geometry.Pos;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
+import javafx.geometry.Insets;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.scene.control.*;
 import javafx.scene.Scene;
-import javafx.event.*;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.net.Socket;
+import java.net.ServerSocket;
 
 
 public class GUI extends Application {
     String message;
     TextArea chatArea;
     TextField messageField;
+    private TextField usernameField;
+    private Button serverButton;
+    private Button connectButton;
+    private boolean ServerRunning = false;
     public static void main(String[] args) {
         launch(args);
     }
 
     @Override
     public void start(Stage primaryStage) {
-
 
         primaryStage.setTitle("Chat Application");
 
@@ -35,42 +34,69 @@ public class GUI extends Application {
         chatArea.setWrapText(true);
         layout.setCenter(chatArea);
 
+        HBox bottomBox = new HBox(10);
+
+        Label messageFieldLabel = new Label("Message: ");
         messageField = new TextField();
         messageField.setOnAction(e -> sendMessage(messageField.getText()));
-        layout.setBottom(messageField);
+        HBox.setMargin(messageField, new Insets(0, 10, 0, 0));
 
-        Scene scene = new Scene(layout, 400, 300);
+        serverButton = new Button("Start Server");
+        serverButton.setOnAction(e -> {
+            try {
+                startServer();
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+        HBox.setMargin(serverButton, new Insets(0, 10, 0, 0));
+
+        Label usernameLabel = new Label("Username:");
+        usernameField = new TextField();
+        usernameField.setPrefWidth(100);
+        HBox.setMargin(usernameField, new Insets(0, 10, 0, 0));
+
+
+
+        connectButton = new Button("Connect");
+        connectButton.setOnAction(e -> connectClient(usernameField.getText()));
+
+        bottomBox.getChildren().addAll(serverButton, usernameLabel, usernameField, connectButton,messageFieldLabel, messageField);
+        bottomBox.setHgrow(messageField, Priority.ALWAYS);
+
+        layout.setBottom(bottomBox);
+        BorderPane.setMargin(bottomBox, new Insets(10));
+
+        Scene scene = new Scene(layout, 800, 600);
         primaryStage.setScene(scene);
         primaryStage.setOnCloseRequest(e -> System.out.println("close app"));
         primaryStage.show();
-//        primaryStage.setTitle("JavaChat");
-//
-//
-//
-//        TextField txt1 = new TextField();
-//        TextField txt2 = new TextField();
-//        Button btn1 = new Button("Prompt");
-//        btn1.setOnAction( e -> {
-//            txt2.setText(GPT.prompt(txt1.getText()));
-//
-//        });
-//
-//
-//
-//
-//        VBox layout = new VBox(btn1,txt1,txt2);
-//        layout.setAlignment(Pos.CENTER);
-//
-//        Scene scene1 = new Scene(layout, 500,500);
-//
-//
-//        primaryStage.setScene(scene1);
-//        primaryStage.show();
-
-
-
     }
 
+
+    private void startServer() throws IOException {
+        if (ServerRunning) {
+            ServerRunning = false;
+
+
+
+        } else {
+            serverButton.setText("Exit");
+            // Implement logic to start the server
+            ServerRunning = true;
+        }
+    }
+
+    private void connectClient(String username) {
+        // Implement your logic to handle client connection
+        if (username != null && !username.isEmpty()) {
+            chatArea.appendText("Connected as: " + username + "\n");
+            connectButton.setDisable(true); // Disable the connect button after successful connection
+            usernameField.setDisable(true); // Disable the username field after successful connection
+        } else {
+            chatArea.appendText("Invalid username.\n");
+        }
+    }
     private void sendMessage(String message) {
         chatArea.appendText("You: " + message + "\n");
         if(message.contains("GPT")){

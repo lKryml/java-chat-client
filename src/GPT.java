@@ -1,3 +1,5 @@
+import com.sun.tools.javac.Main;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -8,7 +10,7 @@ import java.net.URL;
 public class GPT {
     public static String prompt(String message) {
         String url = "https://api.openai.com/v1/chat/completions";
-        String apiKey = "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"; // API key goes here
+        String apiKey = System.getenv("OPENAI_API_KEY"); // API key goes here
         String model = "gpt-3.5-turbo"; // current model of chatgpt api
 
         try {
@@ -50,4 +52,5 @@ public class GPT {
         int endMarker = response.indexOf("\"", startMarker); // Marker for where the content ends.
         return response.substring(startMarker, endMarker); // Returns the substring containing only the response.
     }
+
 }
