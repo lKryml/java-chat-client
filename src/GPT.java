@@ -10,7 +10,7 @@ import java.net.URL;
 public class GPT {
     public static String prompt(String message) {
         String url = "https://api.openai.com/v1/chat/completions";
-        String apiKey = System.getenv("OPENAI_API_KEY"); // API key goes here
+        String apiKey = System.getenv("OPENAI_API_KEY"); // API key "stored in enviro var" (sys)
         String model = "gpt-3.5-turbo"; // current model of chatgpt api
 
         try {
@@ -46,7 +46,7 @@ public class GPT {
         }
     }
 
-    // This method extracts the response expected from chatgpt and returns it.
+    // filter through garbage for response from chatgpt and return it.
     public static String extractContentFromResponse(String response) {
         int startMarker = response.indexOf("content") + 11; // Marker for where the content starts.
         int endMarker = response.indexOf("\"", startMarker); // Marker for where the content ends.

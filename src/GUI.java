@@ -3,17 +3,17 @@ import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import java.io.*;
 import java.net.Socket;
 public class GUI extends Application {
-
     private TextArea chatArea;
     private TextField messageField;
     private TextField usernameField;
     private Button connectButton;
-    private boolean serverRunning = false;
+    private boolean connectedToServer = false;
     private BufferedWriter serverWriter;
 
     public static void main(String[] args) {
@@ -62,6 +62,7 @@ public class GUI extends Application {
 
         Scene scene = new Scene(layout, 800, 600);
         primaryStage.setScene(scene);
+        primaryStage.getIcons().add(new Image( "icon.png" ));
         primaryStage.show();
     }
 
@@ -94,7 +95,7 @@ public class GUI extends Application {
                 e.printStackTrace();
             }
         }).start();
-        serverRunning = true;
+        connectedToServer = true;
     }
 
     private void connectClient(String username) {
@@ -104,11 +105,10 @@ public class GUI extends Application {
         } else {
             chatArea.appendText("Invalid username.\n");
         }
-        if (!serverRunning) {
+        if (!connectedToServer) {
             startServerConnection();
         }
     }
-
     private void sendMessage(String message) {
         if (serverWriter != null) {
             try {
@@ -122,6 +122,5 @@ public class GUI extends Application {
                 e.printStackTrace();
             }
         }
-
     }
 }

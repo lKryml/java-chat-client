@@ -4,13 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="066ecba8-0e82-4957-940f-587ed894579c" name="Changes" comment="Gui changes / logic additions">
+    <list default="true" id="066ecba8-0e82-4957-940f-587ed894579c" name="Changes" comment="1.0 release">
+      <change afterPath="$PROJECT_DIR$/src/icon.png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/vars.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Client.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ClientHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ClientHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GPT.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GPT.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -159,7 +159,7 @@
       <workItem from="1705776628875" duration="625000" />
       <workItem from="1705777685422" duration="1314000" />
       <workItem from="1705816677472" duration="289000" />
-      <workItem from="1705816973889" duration="12213000" />
+      <workItem from="1705816973889" duration="14567000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -273,7 +273,15 @@
       <option name="project" value="LOCAL" />
       <updated>1705777973895</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="1.0 release">
+      <option name="closed" value="true" />
+      <created>1705832867413</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1705832867413</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -288,7 +296,8 @@
     <MESSAGE value="commit" />
     <MESSAGE value="GUI changes" />
     <MESSAGE value="Gui changes / logic additions" />
-    <option name="LAST_COMMIT_MESSAGE" value="Gui changes / logic additions" />
+    <MESSAGE value="1.0 release" />
+    <option name="LAST_COMMIT_MESSAGE" value="1.0 release" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

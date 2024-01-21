@@ -4,13 +4,10 @@ import java.io.IOException;
 public class ClientHandler extends Thread {
 
     private BufferedReader br;
-
     private Server server;
-
     public ClientHandler(Server server, BufferedReader br) {
         this.server = server;
         this.br = br;
-
     }
     @Override
     public void run() {
