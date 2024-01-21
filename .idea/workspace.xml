@@ -4,10 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="066ecba8-0e82-4957-940f-587ed894579c" name="Changes" comment="commit">
+    <list default="true" id="066ecba8-0e82-4957-940f-587ed894579c" name="Changes" comment="Gui changes / logic additions">
+      <change afterPath="$PROJECT_DIR$/src/vars.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GPT.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GPT.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Client.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ClientHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ClientHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,6 +59,7 @@
   &quot;keyToString&quot;: {
     &quot;Application.ChatGUI.executor&quot;: &quot;Run&quot;,
     &quot;Application.Client.executor&quot;: &quot;Run&quot;,
+    &quot;Application.GPT.executor&quot;: &quot;Run&quot;,
     &quot;Application.GUI.executor&quot;: &quot;Run&quot;,
     &quot;Application.Server.executor&quot;: &quot;Run&quot;,
     &quot;Application.gptTEST.executor&quot;: &quot;Run&quot;,
@@ -77,7 +81,7 @@
     &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.editor&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -87,14 +91,6 @@
     </key>
   </component>
   <component name="RunManager" selected="Application.GUI">
-    <configuration name="ChatGUI" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="ChatGUI" />
-      <module name="JavaChatClient" />
-      <option name="VM_PARAMETERS" value="--module-path &quot;C:\Users\gumim\Downloads\IdeaJ\javafx-sdk-21.0.1\lib&quot; --add-modules javafx.controls,javafx.fxml" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="Client" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="20" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -105,7 +101,10 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="GUI" type="Application" factoryName="Application">
+    <configuration name="GUI" type="Application" factoryName="Application" singleton="false">
+      <envs>
+        <env name="OPENAI_API_KEY" value="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" />
+      </envs>
       <option name="MAIN_CLASS_NAME" value="GUI" />
       <module name="JavaChatClient" />
       <option name="VM_PARAMETERS" value="--module-path &quot;C:\Users\gumim\Downloads\IdeaJ\javafx-sdk-21.0.1\lib&quot; --add-modules javafx.controls,javafx.fxml" />
@@ -124,15 +123,13 @@
     </configuration>
     <list>
       <item itemvalue="Application.GUI" />
-      <item itemvalue="Application.ChatGUI" />
       <item itemvalue="Application.Client" />
       <item itemvalue="Application.Server" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Client" />
         <item itemvalue="Application.Server" />
-        <item itemvalue="Application.ChatGUI" />
+        <item itemvalue="Application.Client" />
       </list>
     </recent_temporary>
   </component>
@@ -156,7 +153,13 @@
       <workItem from="1705393293236" duration="9004000" />
       <workItem from="1705409557405" duration="5901000" />
       <workItem from="1705503345974" duration="1691000" />
-      <workItem from="1705574663401" duration="4536000" />
+      <workItem from="1705574663401" duration="5157000" />
+      <workItem from="1705769257865" duration="1171000" />
+      <workItem from="1705770438848" duration="5754000" />
+      <workItem from="1705776628875" duration="625000" />
+      <workItem from="1705777685422" duration="1314000" />
+      <workItem from="1705816677472" duration="289000" />
+      <workItem from="1705816973889" duration="12213000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -254,7 +257,23 @@
       <option name="project" value="LOCAL" />
       <updated>1705528272341</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="GUI changes">
+      <option name="closed" value="true" />
+      <created>1705602780077</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1705602780077</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Gui changes / logic additions">
+      <option name="closed" value="true" />
+      <created>1705777973895</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1705777973895</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -267,7 +286,9 @@
     <MESSAGE value="implementing GUI" />
     <MESSAGE value="gui 0.1&#10;implemented chatGPT prompting" />
     <MESSAGE value="commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="commit" />
+    <MESSAGE value="GUI changes" />
+    <MESSAGE value="Gui changes / logic additions" />
+    <option name="LAST_COMMIT_MESSAGE" value="Gui changes / logic additions" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

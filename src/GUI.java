@@ -1,31 +1,28 @@
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
-import javafx.scene.control.*;
-import javafx.scene.Scene;
-
-import java.io.IOException;
-import java.net.ServerSocket;
-
-
+import java.io.*;
+import java.net.Socket;
 public class GUI extends Application {
-    String message;
-    TextArea chatArea;
-    TextField messageField;
+
+    private TextArea chatArea;
+    private TextField messageField;
     private TextField usernameField;
-    private Button serverButton;
     private Button connectButton;
-    private boolean ServerRunning = false;
+    private boolean serverRunning = false;
+    private BufferedWriter serverWriter;
+
     public static void main(String[] args) {
         launch(args);
     }
 
     @Override
     public void start(Stage primaryStage) {
-
-        primaryStage.setTitle("Chat Application");
+        primaryStage.setTitle("JavaChatClient");
 
         BorderPane layout = new BorderPane();
 
@@ -38,30 +35,26 @@ public class GUI extends Application {
 
         Label messageFieldLabel = new Label("Message: ");
         messageField = new TextField();
-        messageField.setOnAction(e -> sendMessage(messageField.getText()));
-        HBox.setMargin(messageField, new Insets(0, 10, 0, 0));
-
-        serverButton = new Button("Start Server");
-        serverButton.setOnAction(e -> {
-            try {
-                startServer();
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
+        messageField.setOnAction(e -> {
+            sendMessage(messageField.getText());
+            if(messageField.getText().contains("GPT")){
+                sendMessage("ChatGPT: " + GPT.prompt(messageField.getText()));
             }
-        });
-        HBox.setMargin(serverButton, new Insets(0, 10, 0, 0));
+            messageField.clear();
+        }
+        );
+        HBox.setMargin(messageField, new Insets(0, 10, 0, 0));
 
         Label usernameLabel = new Label("Username:");
         usernameField = new TextField();
         usernameField.setPrefWidth(100);
         HBox.setMargin(usernameField, new Insets(0, 10, 0, 0));
 
-
-
         connectButton = new Button("Connect");
         connectButton.setOnAction(e -> connectClient(usernameField.getText()));
+        HBox.setMargin(connectButton, new Insets(0, 10, 0, 0));
 
-        bottomBox.getChildren().addAll(serverButton, usernameLabel, usernameField, connectButton,messageFieldLabel, messageField);
+        bottomBox.getChildren().addAll(usernameLabel, usernameField, connectButton, messageFieldLabel, messageField);
         bottomBox.setHgrow(messageField, Priority.ALWAYS);
 
         layout.setBottom(bottomBox);
@@ -69,59 +62,66 @@ public class GUI extends Application {
 
         Scene scene = new Scene(layout, 800, 600);
         primaryStage.setScene(scene);
-        primaryStage.setOnCloseRequest(e -> System.out.println("close app"));
         primaryStage.show();
     }
 
+    private void startServerConnection() {
+        new Thread(() -> {
+            try {
+                Socket socket = new Socket("192.168.1.5", 12345);
+                serverWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
+                BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
-    private void startServer() throws IOException {
-        if (ServerRunning) {
-            ServerRunning = false;
+                // Handle server messages in a separate thread
+                new Thread(() -> {
+                    while (true) {
+                        try {
+                            String serverMessage = reader.readLine();
+                            if (serverMessage != null) {
+                                Platform.runLater(() -> chatArea.appendText(serverMessage + "\n"));
+                            }
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }).start();
 
+                // Notify server about the new client
+                serverWriter.write(usernameField.getText() + " || has connected"  + "\r\n");
+                serverWriter.flush();
 
-
-        } else {
-            serverButton.setText("Exit");
-            // Implement logic to start the server
-            ServerRunning = true;
-        }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }).start();
+        serverRunning = true;
     }
 
     private void connectClient(String username) {
-        // Implement your logic to handle client connection
         if (username != null && !username.isEmpty()) {
-            chatArea.appendText("Connected as: " + username + "\n");
             connectButton.setDisable(true); // Disable the connect button after successful connection
             usernameField.setDisable(true); // Disable the username field after successful connection
         } else {
             chatArea.appendText("Invalid username.\n");
         }
-    }
-    private void sendMessage(String message) {
-        chatArea.appendText("You: " + message + "\n");
-        if(message.contains("GPT")){
-            chatArea.appendText("ChatGPT: " + GPT.prompt(message));
-            chatArea.appendText("\n");
+        if (!serverRunning) {
+            startServerConnection();
         }
-        messageField.clear();
-//        try {
-//            Socket socket = new Socket("localhost", 5555);
-//            PrintWriter writer = new PrintWriter(socket.getOutputStream(), true);
-//            writer.println(message);
-//            socket.close();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
     }
 
-//    private void closeApplication() {
-//        try {
-//            if (serverSocket != null && !serverSocket.isClosed()) {
-//                serverSocket.close();
-//            }
-//            Platform.exit();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
+    private void sendMessage(String message) {
+        if (serverWriter != null) {
+            try {
+                if(message.contains("ChatGPT")){
+                    serverWriter.write(message + "\r\n");
+                }else {
+                    serverWriter.write(usernameField.getText() + ": " + message + "\r\n");
+                }
+                serverWriter.flush();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
 }
