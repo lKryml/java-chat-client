@@ -4,13 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="066ecba8-0e82-4957-940f-587ed894579c" name="Changes" comment="1.0 release">
-      <change afterPath="$PROJECT_DIR$/src/icon.png" afterDir="false" />
+    <list default="true" id="066ecba8-0e82-4957-940f-587ed894579c" name="Changes" comment="added some documentation &#10;added favicon &#10;added UML diagram&#10;cleaned code">
       <change afterPath="$PROJECT_DIR$/src/vars.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ClientHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ClientHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GPT.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GPT.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/JavaChatClient.png" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,9 +99,7 @@
       </method>
     </configuration>
     <configuration name="GUI" type="Application" factoryName="Application" singleton="false">
-      <envs>
-        <env name="OPENAI_API_KEY" value="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" />
-      </envs>
+
       <option name="MAIN_CLASS_NAME" value="GUI" />
       <module name="JavaChatClient" />
       <option name="VM_PARAMETERS" value="--module-path &quot;C:\Users\gumim\Downloads\IdeaJ\javafx-sdk-21.0.1\lib&quot; --add-modules javafx.controls,javafx.fxml" />
@@ -159,7 +154,7 @@
       <workItem from="1705776628875" duration="625000" />
       <workItem from="1705777685422" duration="1314000" />
       <workItem from="1705816677472" duration="289000" />
-      <workItem from="1705816973889" duration="14567000" />
+      <workItem from="1705816973889" duration="14975000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -281,7 +276,15 @@
       <option name="project" value="LOCAL" />
       <updated>1705832867413</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="added some documentation &#10;added favicon &#10;added UML diagram&#10;cleaned code">
+      <option name="closed" value="true" />
+      <created>1705835336448</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1705835336448</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -297,7 +300,8 @@
     <MESSAGE value="GUI changes" />
     <MESSAGE value="Gui changes / logic additions" />
     <MESSAGE value="1.0 release" />
-    <option name="LAST_COMMIT_MESSAGE" value="1.0 release" />
+    <MESSAGE value="added some documentation &#10;added favicon &#10;added UML diagram&#10;cleaned code" />
+    <option name="LAST_COMMIT_MESSAGE" value="added some documentation &#10;added favicon &#10;added UML diagram&#10;cleaned code" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
